@@ -9,16 +9,20 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            address: '',
+            searchText: '',
             startDate : '',
             endDate: '',
-
+            address: '',
         };
     }
 
-    addressOnChange = address => {
-        this.setState({ address });
+    searchTextOnChange = searchText => {
+        this.setState({ searchText });
     };
+
+    selectOnChange = address => {
+        this.setState({ searchText: address, address})
+    }
 
     dateOnChange = (dates) => {
         this.setState({
@@ -50,14 +54,24 @@ class Search extends Component {
         )
     }
 
+
+
     render() {
+
+        const searchOptions = {
+            types: ['(cities)'],
+            componentRestrictions: {country: ""}
+        }
+
        return (
            <div className="container">
 
                <div className="search-city">
                    <PlacesAutocomplete
-                       value={this.state.address}
-                       onChange={this.addressOnChange}
+                       value={this.state.searchText}
+                       onChange={this.searchTextOnChange}
+                       onSelect={this.selectOnChange}
+                       searchOptions={searchOptions}
                    >
 
                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
