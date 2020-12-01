@@ -1,0 +1,17 @@
+.container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.search-city {
+
+}
+
+.search-date {
+    margin-top: 5px;
+}
+
+.search-next-btm {
+    margin-top: 5px;
+}

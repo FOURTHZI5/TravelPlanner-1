@@ -8,31 +8,40 @@ const { TabPane } = Tabs;
 
 class Home extends Component {
   state = {
-    city: "",
-    startDate:  "",
-    endDate: "",
+      activeTab: "1",
+      city: "",
+      dates: [],
   }
 
-  updateCity(city, startDate, endDate){
+  update = (city, dates) => {
     //search's responsibility
+      this.setState({
+          city,
+          dates,
+          activeTab: "2"
+      })
   }
+
+  tabsOnChange = (key) => {
+      this.setState( {
+          activeTab: key
+      })
+  }
+
 
    render() {
        return (
-         <div className = "home">
-           <Tabs defaultActiveKey="1">
-              <TabPane tab="Search" key="1">
-                <Search updateCity = {this.updateCity}/>
-              </TabPane>
-              <TabPane tab="My Trip" key="2">
+         <Tabs activeKey={this.state.activeTab} onChange={this.tabsOnChange}>
+            <TabPane tab="Search" key="1">
+              <Search update = {this.update}/>
+            </TabPane>
+            <TabPane tab="My Trip" key="2">
                 <MyTrip datesList = {this.state.dates} cityName = {this.state.city}/>
-              </TabPane>
-              <TabPane tab="History" key="3">
-                <History />
-              </TabPane>
-            </Tabs>
-         </div>
-
+            </TabPane>
+            <TabPane tab="History" key="3">
+              <History />
+            </TabPane>
+          </Tabs>
        );
    }
 }
