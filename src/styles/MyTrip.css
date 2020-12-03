@@ -15,3 +15,12 @@
 .right-side {
     flex: 50%;
 }
+
+.addPlanButton {
+  margin-top: 10px;
+}
+
+.attraction_list {
+  overflow: scroll;
+  height: 700px;
+}
